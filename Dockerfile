@@ -1,9 +1,13 @@
 FROM node:lts-alpine
 
-RUN apk add --no-cache bash
+WORKDIR /home/node/app
+
+COPY . /home/node/app
+
+RUN apk add --no-cache sh
 
 RUN npm install -g @nestjs/cli
 
-USER node
+RUN chmod +x ./entrypoint.sh
 
-WORKDIR /home/node/app
+USER node
